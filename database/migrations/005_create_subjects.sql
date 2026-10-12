@@ -1,0 +1,12 @@
+USE gurukul_db;
+
+CREATE TABLE IF NOT EXISTS subjects (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(80) NOT NULL,
+  code VARCHAR(20),
+  class_id INT,
+  teacher_id INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE SET NULL,
+  FOREIGN KEY (teacher_id) REFERENCES users(id) ON DELETE SET NULL
+);

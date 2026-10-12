@@ -1,0 +1,22 @@
+USE gurukul_db;
+
+CREATE TABLE IF NOT EXISTS buses (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  bus_no VARCHAR(20),
+  driver_name VARCHAR(120),
+  driver_phone VARCHAR(20),
+  route VARCHAR(150),
+  capacity INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS transport_allocations (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  student_id INT NOT NULL,
+  bus_id INT NOT NULL,
+  stop VARCHAR(120),
+  fee DECIMAL(10,2),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+  FOREIGN KEY (bus_id) REFERENCES buses(id) ON DELETE CASCADE
+);
